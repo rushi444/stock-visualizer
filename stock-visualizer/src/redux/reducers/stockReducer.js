@@ -1,9 +1,4 @@
-import {
-  STOCK_TIME_SERIES_DAILY,
-  STOCK_TIME_SERIES_MONTHLY,
-  STOCK_TIME_SERIES_WEEKLY,
-  MULTIPLE_STOCKS_SERIES_MONTHLY,
-} from '../actions/index';
+import { RECIEVE_STOCK_TIME_SERIES_DAILY } from '../actions/index';
 
 const initialState = {
   dailyStocks: {},
@@ -12,27 +7,13 @@ const initialState = {
   monthlyStocksSeries: [],
 };
 
-export const stockReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case STOCK_TIME_SERIES_DAILY:
+export const stockReducer = (state = initialState, { type, data }) => {
+  switch (type) {
+    case RECIEVE_STOCK_TIME_SERIES_DAILY:
+      console.log(data);
       return {
         ...state,
-        dailyStocks: action.payload,
-      };
-    case STOCK_TIME_SERIES_WEEKLY:
-      return {
-        ...state,
-        weeklyStocks: action.payload,
-      };
-    case STOCK_TIME_SERIES_MONTHLY:
-      return {
-        ...state,
-        monthlyStocks: action.payload,
-      };
-    case MULTIPLE_STOCKS_SERIES_MONTHLY:
-      return {
-        ...state,
-        monthlyStocksSeries: action.payload,
+        dailyStocks: data,
       };
     default:
       return state;
